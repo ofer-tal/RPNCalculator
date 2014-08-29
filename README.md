@@ -15,15 +15,22 @@ To add unary operators (e.g. sqrt, ln, sin, cos) it is recommended to implement 
 The main functionality of the calculator is divided as follows:
 
 RPNCalculatorExecutable - main executable entry point. contains the main input loop and handling of non-calculator commands (quit)
+
 RPNCalculator - Class that represents the calculator. It implements a method that processes one user input (token) at a time
+
 Operator - An abstract superclass for all available operators.
 (Subclasses of Operator impement specific operations -- see each class documentation for further information)
 
 Procedure for extending the RPNCalculator with additional operators
+
 1. Implement a subclass of "Operator" (or BinaryOperator) and provide:
+
 	- an implemnterion for the abstract method "bool IsTriggeringInput(string)" that identifies an input token that triggers it (e.g. "+" for an addition operator). when the triggering operator is received, the Operator's calculation method will be called
+
 	- an implementation of the "Calculate" method that pops operands from the stack and pushes the result to the stack.
+
 	(* for BinaryOperators, it is more convenient to extend the BinaryOperator class instead - the Calculate method in that case simply operates on the 2 operands (parameters) and returns the result)
+
 2. Add an instance of the operator class to the static constractor of the Calculator class.
 
 
